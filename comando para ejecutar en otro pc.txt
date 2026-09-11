@@ -1,0 +1,4 @@
+mysqldump -u root -p mercancia > respaldo.sql      # en la PC original
+  mysql -u root -p mercancia < respaldo.sql           # en la PC nueva
+  mongodump --uri="mongodb://localhost:27017" --db=mercancia --out=respaldo_mongo
+  mongorestore --uri="mongodb://localhost:27017" respaldo_mongo
