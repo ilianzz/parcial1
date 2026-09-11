@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercancía — inventario</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="marca">Mercancía</div>
+  <div id="sesion-info" class="sesion-info oculto">
+    <span id="nombre-usuario"></span>
+    <button id="btn-salir" class="enlace">Cerrar sesión</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ---------- Vista de autenticación ---------- -->
+  <section id="vista-auth" class="vista">
+    <div class="panel-auth">
+      <div class="tabs">
+        <button class="tab activo" data-tab="login">Iniciar sesión</button>
+        <button class="tab" data-tab="registro">Crear cuenta</button>
+      </div>
+
+      <form id="form-login" class="form-auth">
+        <label>Correo
+          <input type="email" name="correo" required autocomplete="email">
+        </label>
+        <label>Contraseña
+          <input type="password" name="password" required autocomplete="current-password">
+        </label>
+        <button type="submit">Entrar</button>
+        <p class="mensaje" id="login-mensaje"></p>
+      </form>
+
+      <form id="form-registro" class="form-auth oculto">
+        <label>Nombre
+          <input type="text" name="nombre" required maxlength="200">
+        </label>
+        <label>Correo
+          <input type="email" name="correo" required autocomplete="email">
+        </label>
+        <label>Contraseña
+          <input type="password" name="password" required minlength="8" autocomplete="new-password">
+          <small>Mínimo 8 caracteres.</small>
+        </label>
+        <button type="submit">Crear cuenta</button>
+        <p class="mensaje" id="registro-mensaje"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ---------- Vista de inventario ---------- -->
+  <section id="vista-inventario" class="vista oculto">
+
+    <div class="cabecera-inventario">
+      <h1>Inventario</h1>
+      <button id="btn-nuevo" class="primario">+ Nuevo producto</button>
+    </div>
+
+    <p class="mensaje" id="inventario-mensaje"></p>
+
+    <div id="lista-productos" class="grid-productos"></div>
+    <p id="lista-vacia" class="vacio oculto">Todavía no tienes productos. Crea el primero.</p>
+
+  </section>
+
+</main>
+
+<!-- ---------- Modal: crear/editar producto ---------- -->
+<div id="modal-producto" class="modal oculto">
+  <div class="modal-contenido">
+    <h2 id="modal-titulo">Nuevo producto</h2>
+    <form id="form-producto">
+      <input type="hidden" name="idproducto">
+      <label>Producto
+        <input type="text" name="producto" required maxlength="200">
+      </label>
+      <label>Marca
+        <input type="text" name="marca" required maxlength="200">
+      </label>
+      <label>Precio
+        <input type="number" name="precio" required min="0" step="0.01">
+      </label>
+      <label>Imagen (desde tu dispositivo)
+        <input type="file" name="imagen" accept="image/jpeg,image/png,image/gif,image/webp">
+        <small>Solo archivos locales. No se admiten URLs externas.</small>
+      </label>
+      <label id="contenedor-quitar-imagen" class="checkbox oculto">
+        <input type="checkbox" name="quitar_imagen"> Quitar imagen actual
+      </label>
+      <div class="acciones-modal">
+        <button type="button" id="btn-cancelar" class="secundario">Cancelar</button>
+        <button type="submit" class="primario">Guardar</button>
+      </div>
+      <p class="mensaje" id="modal-mensaje"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ---------- Modal: confirmar eliminación ---------- -->
+<div id="modal-eliminar" class="modal oculto">
+  <div class="modal-contenido modal-pequeno">
+    <h2>Eliminar producto</h2>
+    <p id="eliminar-texto"></p>
+    <div class="acciones-modal">
+      <button type="button" id="btn-cancelar-eliminar" class="secundario">Cancelar</button>
+      <button type="button" id="btn-confirmar-eliminar" class="peligro">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- Modal: imagen original ---------- -->
+<div id="modal-original" class="modal oculto">
+  <div class="modal-contenido modal-imagen">
+    <div class="cabecera-modal-imagen">
+      <h2>Imagen original</h2>
+      <button type="button" id="btn-cerrar-original" class="enlace">Cerrar</button>
+    </div>
+    <div id="contenedor-original" class="contenedor-imagen-original"></div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

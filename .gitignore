@@ -1,0 +1,9 @@
+.env
+env/
+venv/
+__pycache__/
+*.pyc
+imagenes/*.enc
+imagenes/comprimidas/*.enc
+!imagenes/.gitkeep
+!imagenes/comprimidas/.gitkeep
